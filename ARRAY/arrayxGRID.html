@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    #container {
+      background-color: palevioletred;
+      text-align: center;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+    }
+
+    button {
+      font-size: 10px;
+      background: rgb(215, 125, 215);
+      padding: 2px 10px;
+    }
+
+    .card {
+      border: 5px solid black;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>MENU</h1>
+  <div id="container">
+    <!-- <div class="card">
+      <h1>Coffee</h1>
+      <p>Drink</p>
+      <button>Buy</button>
+      <button>Add to cart</button>
+    </div>
+    <div class="card">
+      <h1>Tea</h1>
+      <p>Drink</p>
+      <button>Buy</button>
+      <button>Add to cart</button>
+    </div>
+    <div class="card">
+      <h1>Boba Tea</h1>
+      <p>Drink</p>
+      <button>Buy</button>
+      <button>Add to cart</button>
+    </div>
+    <div class="card">
+      <h1>Samosa</h1>
+      <p>Snacks</p>
+      <button>Buy</button>
+      <button>Add to cart</button>
+    </div>
+    <div class="card">
+      <h1>Cutlet</h1>
+      <p>Snacks</p>
+      <button>Buy</button>
+      <button>Add to cart</button>
+    </div>
+    <div class="card">
+      <h1>Veg thali</h1>
+      <p>Meal</p>
+      <button>Buy</button>
+      <button>Add to cart</button>
+    </div> -->
+  </div>
+</body>
+
+</html>
+
+<script>
+  // var menu = ["Coffee", "Tea", "Boba Tea", "Samosa", "Cutlet", "Veg Thali","Banana"]
+
+  var menu = [{
+    item : "Banana",
+    price : 40,
+    type :"Fruit"
+  },{
+    item : "Coffee",
+    price : 140,
+    type :"Drink"
+  },{
+    item : "Tea",
+    price : 20,
+    type :"Drink"
+  },{
+    item : "Boba Tea",
+    price : 240,
+    type :"Drink"
+  },{
+    item : "Samosa",
+    price : 15,
+    type :"Snack"
+  },{
+    item : "Veg Thali",
+    price : 65,
+    type :"Meal"
+  },]
+
+  console.log(menu);
+
+  var container = document.getElementById("container")
+
+  menu.map((curr) => {
+    console.log("curr: ", curr);
+
+    var card = `<div class="card">
+      <h1>${curr.item}</h1>
+      <p>${curr.type}</p>
+      <h3>$ ${curr.price} </h3>
+      <button>Buy</button>
+      <button>Add to cart</button>
+    </div>`
+
+    container.innerHTML += card
+  })
+
+</script>
