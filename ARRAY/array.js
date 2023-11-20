@@ -2,7 +2,7 @@ var x = 10;
 var y = 20;
 var z = 30;
 
-var numArr = [39, 1, 21, 8, 50, 64, 18];
+var numArr = [7, 10, 21, 8, 50, 64, 18];
 console.log("numArr: ", numArr);
 
 var nameArr = ["Rachel", "Joel", "Lawrence", "Millie", "Cory", "Harold"];
@@ -29,7 +29,9 @@ var nameArr = ["Rachel", "Joel", "Lawrence", "Millie", "Cory", "Harold"];
 // nameArr.splice(3,1,"fazil")
 
 //?  Index of particular element
-// console.log(nameArr.indexOf("Lawrence"))
+console.log(numArr.findIndex(e=>{
+    return e>8
+}))
 
 //* visit each element in an array using "for loop"
 //traverse / traversal
