@@ -188,16 +188,16 @@
 // 184 -> 178 -> 179 => 181 -> 182
 
 //! Example 3
-function delayedGreeting(name, callback) {
-//   setTimeout(function () {
-//     callback(name);
-//   }, 2000);
-    if(name == "yaseen") callback(name)
-    else console.log("name is not yaseen");
-}
+// function delayedGreeting(name, callback) {
+// //   setTimeout(function () {
+// //     callback(name);
+// //   }, 2000);
+//     if(name == "yaseen") callback(name)
+//     else console.log("name is not yaseen");
+// }
 
-function greet(message) {
-  console.log("My name is : "+message);
-}
+// function greet(message) {
+//   console.log("My name is : "+message);
+// }
 
-delayedGreeting("Yaseen", greet);
+// delayedGreeting("Yaseen", greet);
