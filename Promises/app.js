@@ -13,10 +13,10 @@
 //^ SYNTAX of a PROMISE
 // let myPromise = new Promise((resolve, reject) => {
 //   let x = 1 + 1;
-//   if (x == 2) {
-//     resolve("OK");
+//   if (x == 3) {
+//     reject("FAILED");
 //   } else {
-//     reject("x is not 2");
+//     resolve("OK  khjdsbkfhjdsfs");
 //   }
 // });
 // console.log("myPromise: ", myPromise);
@@ -27,9 +27,11 @@
 //* - .then to do something when the promise is "resolved"
 //! - .catch to do something when the promise is "rejected"
 
-// myPromise
-//   .then((res) => console.log("res: ", res))
-//   .catch((err) => console.log("err: ", err));
+// myPromise.then((res)=>{
+//   console.log(res);
+// }).catch((err)=>{
+//   console.log("err: ", err);
+// })
 
 // myPromise
 //   .then((res) => {
@@ -43,9 +45,10 @@
 
 //! - Example 1 (Also an example of how to take arguments inside a promise)
 // const delay = (milliseconds) => {
-//   return new Promise((resolve) => {
+//   return new Promise((resolve,reject) => {
 //     setTimeout(() => {
-//       resolve(`Waited for ${milliseconds} milliseconds`);
+//       // resolve(`Waited for ${milliseconds} milliseconds`);
+//       reject("FAILED");
 //     }, milliseconds);
 //   });
 // };
@@ -84,7 +87,7 @@
 //! -Example 3
 // const promise = new Promise((resolve, reject) => {
 //   setTimeout(() => {
-//     reject('Errrrrrrrrrrrrrrrrrrrrrrror! ');
+//     reject('Errrrrrrrrrrrrrrrrrrrrrrror!');
 //   }, 1000);
 // });
 
@@ -113,12 +116,19 @@
 //   resolve("Promise 1 Resolved");
 // });
 // const promise2 = new Promise((resolve, reject) => {
-//   resolve("Promise 2 Resolved");
-//   // reject("Promise 2 Rejected")
+//   // resolve("Promise 2 Resolved");
+//   reject("Promise 2 Rejected")
 // });
 // const promise3 = new Promise((resolve, reject) => {
 //   resolve("Promise 3 Resolved");
 // });
+
+// promise2.then((data)=>{
+//   console.log("data: ", data);
+
+// }).catch((rej)=>{
+//   console.log("rej: ", rej);
+// })
 
 // Promise.all([promise1,promise2,promise3]).then((result)=>{
 //   console.log("result: ", result);
@@ -149,10 +159,12 @@
 //* - .json() converts raw data to useable JS object
 
 //^ Syntax
-// fetch("https://jsonplaceholder.typicode.com/users")
-//   .then((response) => response.json())  //fetch returns a promise that we need to resolve it again
-//   .then((data) => console.log(data))
-//   .catch((error) => console.log("Error fetching data:", error));
+// fetch("https://jsonplaceholder.typicode.com/users").then((response) => {
+//   // console.log("response: ", response.json());
+//   return response.json()
+// }).then(data=>console.log(data))
+// .then((data) => localStorage.setItem("data",JSON.stringify(data)))
+// .catch((error) => console.log("Error fetching data:", error));
 
 //? ----------------------------------------------------------------------------------------------
 
@@ -193,40 +205,61 @@
 //^Syntax
 // const fetchData = async () => {
 //   try {
-//     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+//     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
 //     const data = await response.json();
 //     console.log(data);
 //   } catch (error) {
-//     console.error('Error fetching data:', error);
+//     console.error("Error fetching data:", error);
 //   }
 // };
 // fetchData();
 
 //* Lets Write in Normal Way
 // function fetchData(){
-
+//   fetch("https://jsonplaceholder.typicode.com/posts").then((res)=>{
+//       return res.json()
+//   }).then((data)=>{
+//     console.log("data: ", data);
+//   })
 // }
 // fetchData()
+
+// async function fetchData(){
+//     let res = await fetch("https://jsonplaceholder.typicode.com/posts")
+//     let data = await res.json()
+//     console.log("data: ", data);
+// }
+// const fetchData = async () => {
+//   try {
+//     let res = await fetch("https://jsonplaceholder.typicode.com/posts");
+//     let data = await res.json();
+//     console.log("data: ", data);
+//   } catch (error) {
+//     console.log("error: ", error);
+//   }
+// };
+
+// fetchData();
 
 //? ----------------------------------------------------------------------------------------------
 
 //! Example 1
-// const delay = (milliseconds) => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(`Waited for ${milliseconds} milliseconds`);
-//     }, milliseconds);
-//   });
-// };
+const delay = (milliseconds) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Waited for ${milliseconds} milliseconds`);
+    }, milliseconds);
+  });
+};
 
-// const executeDelay = async () => {
-//   try {
-//     const message = await delay(2000);
-//     console.log(message);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+const executeDelay = async () => {
+  try {
+    const message = await delay(2000);
+    console.log(message);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // executeDelay();
 
@@ -304,7 +337,7 @@
 
 // const anotherAsyncTask2 = (data) => {
 //   return new Promise((resolve, reject) => {
-//     if (data) {
+//     if (!data) {
 //       setTimeout(() => resolve(`Task 2 received: ${data}`), 1500);
 //     } else {
 //       reject('Task 2 failed due to missing data');
