@@ -244,22 +244,22 @@
 //? ----------------------------------------------------------------------------------------------
 
 //! Example 1
-const delay = (milliseconds) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(`Waited for ${milliseconds} milliseconds`);
-    }, milliseconds);
-  });
-};
+// const delay = (milliseconds) => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(`Waited for ${milliseconds} milliseconds`);
+//     }, milliseconds);
+//   });
+// };
 
-const executeDelay = async () => {
-  try {
-    const message = await delay(2000);
-    console.log(message);
-  } catch (error) {
-    console.error(error);
-  }
-};
+// const executeDelay = async () => {
+//   try {
+//     const message = await delay(2000);
+//     console.log(message);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 // executeDelay();
 
